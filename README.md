@@ -11,7 +11,7 @@ It provides REST APIs for managing:
 - Orders
 - Couriers
 
-The application is fully containerized using Docker and uses PostgreSQL as the database.
+The application is fully containerized using Docker 
 
 ---
 
@@ -58,7 +58,6 @@ src/main/java/com/delivery/dvApp
 ## 🗄️ Database
 
 - PostgreSQL
-- Managed via Docker
 - JPA/Hibernate used for ORM
 - Soft delete implemented using `deleted` field
 
@@ -147,12 +146,33 @@ Custom query methods are implemented using Spring Data method naming conventions
 
 ## ⚙️ How to Run Without Docker
 
-1. Make sure PostgreSQL is running  
-2. Update `application.properties`  
-3. Run:
-
+### 1. Clone the repository
+```bash
+git clone https://github.com/Alcom01/deliveryApp-backend.git
+cd deliveryApp-backend
+```
+### :elephant: 2. Configure Database (PostgreSQL)
+Update  the `application.properties` file with your local PostgreSQL configuration.
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/your_db
+spring.datasource.username=your_db_user
+spring.datasource.password=your_db_password
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+```
+### :hammer_and_wrench: 3. Build the Project By Maven
+```bash
+mvn clean install
+```
+### :leg: 4. Run the Application
 ```bash
 mvn spring-boot:run
+```
+The API will be available at: http://localhost:8080
+
+## :microscope:  Running Tests
+```bash
+mvn test
 ```
 
 ---
@@ -163,6 +183,7 @@ mvn spring-boot:run
 - Add integration tests
 - Add pagination & sorting
 - Payment Intregration
+- Real time location Using WebSockets
 
 
 ---
@@ -171,3 +192,4 @@ mvn spring-boot:run
 
 Alkim Sabancilar 
 Student ID=40993
+
